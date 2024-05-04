@@ -113,7 +113,7 @@ $(function(){
             });
         }
         if(videoType == 'youtube'){
-            overlayIframe.attr('src', 'http://www.youtube.com/embed/'+videoUrl+'').load(function(){
+            overlayIframe.attr('src', 'https://www.youtube.com/embed/'+videoUrl+'').load(function(){
                 overlayIframe.fadeIn(600);
             });
         }
