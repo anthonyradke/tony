@@ -25,11 +25,36 @@
   </head>
   <body>
     <section class='text-center' id='home'>
-      <video class="video-bg" autoplay muted loop>
-        <source src='thumbnail/bgvid.mp4' type='video/mp4'>
+      <video class="video-bg" autoplay muted loop id="bgVideo">
         <!-- Add additional <source> elements for other video formats if necessary -->
         Your browser does not support the video tag.
       </video>
+    
+      <script>
+        // Array of video sources
+        var videoSources = ['1.mp4', '2.mp4', '3.mp4', '4.mp4', '5.mp4'];
+    
+        // Function to select a random video
+        function selectRandomVideo(previousIndex) {
+          var newIndex;
+          do {
+            newIndex = Math.floor(Math.random() * videoSources.length);
+          } while (newIndex === previousIndex);
+          return newIndex;
+        }
+    
+        // Function to update the video source
+        function updateVideoSource() {
+          var previousIndex = localStorage.getItem('previousVideoIndex');
+          var newIndex = selectRandomVideo(previousIndex);
+          var video = document.getElementById('bgVideo');
+          video.src = 'thumbnail/vfxBG/' + videoSources[newIndex];
+          localStorage.setItem('previousVideoIndex', newIndex);
+        }
+    
+        // Initial video update
+        updateVideoSource();
+      </script>
       
       <div class='centered scrollFade'>
         <h1>
@@ -82,7 +107,7 @@
       </ul>
     </nav>
     <section class='dark trans' id='about'>
-      <div class='centered medium'>
+      <div class='centered large'>
         <!--<hr class="thin-line2">-->
         
         <h2 style="text-align: center;">
@@ -102,7 +127,9 @@
         </br>
         Below are a select few of my favorite projects. Thanks for stopping by!
         </p>
+        
       </div>
+
     </section>
     <section class='dark trans' id='portfolio'>
       <div class='row text-center'>
@@ -110,7 +137,8 @@
           <h2>
             Portfolio
           </h2>
-         
+      
+        
         </div>
         <div class='col-md-4'>
           <a class='item' data-height='1080' data-type='youtube' data-video='FLSbHYMAEHs' data-width='1920' href='#'>
@@ -337,11 +365,11 @@
             <p class='small'>
               <!-- contact text goes here-->
             </p>
-            <div class='social-icons'>
+            <!--<div class='social-icons'>
               <a class='icon fa fa-twitter' href='#'></a>
               <a class='icon fa fa-youtube' href='#'></a>
               <a class='icon fa fa-instagram' href='#'></a>
-            </div>
+            </div>-->
             </div>
           </div>
           <div class='col-md-8'>

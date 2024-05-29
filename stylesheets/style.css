@@ -114,6 +114,13 @@ a { outline: none !important; }
 
 .dark.trans { background: rgba(0, 0, 0, 0.8); }
 
+
+.dark.trans {
+  padding-top: 20px; /* Adjust the value as needed */
+}
+
+
+
 .white.trans { background: rgba(0, 0, 0, 0.8); }
 
 .blue { background: #558099; color: #afcce0; }
@@ -150,10 +157,27 @@ a { outline: none !important; }
 
 
 
-.centered.large { max-width: 920px !important; padding: 20px; width: 100%; min-height: 600px; margin: auto !important; }
-@media screen and (max-width: 620px) { .centered.large { margin: 0 auto; } }
-@media screen and (max-width: 992px) { .centered.large { position: relative !important; padding: 0 !important; height: auto !important; } }
+.centered.large {
+  max-width: 920px !important;
+  padding: 20px !important;
+  width: 100% !important;
+  min-height: 600px !important;
+  margin: auto !important;
+}
 
+@media screen and (max-width: 620px) {
+  .centered.large {
+      margin: 0 auto !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .centered.large {
+      position: relative !important;
+      padding: 0 !important;
+      height: auto !important;
+  }
+}
 
 
 
@@ -182,6 +206,8 @@ section#home {
 section#about { 
   height: 100%; 
 }
+
+
 
 section#contact { 
   height: 100%; 
@@ -689,3 +715,21 @@ nav#main.affix ul ul.dropdown li {
 
   }
   
+
+/* Remove borders from the contact section and its children */
+section#contact,
+section#contact * {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Remove borders and effects from pseudo-elements */
+section#contact::before,
+section#contact::after,
+section#contact *::before,
+section#contact *::after {
+    border: none !important;
+    box-shadow: none !important;
+    content: none !important;
+}
