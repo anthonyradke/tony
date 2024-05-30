@@ -25,16 +25,16 @@
   </head>
   <body>
     <section class='text-center' id='home'>
-      <video class="video-bg" autoplay muted loop id="bgVideo">
-        <!-- Add additional <source> elements for other video formats if necessary -->
-        Your browser does not support the video tag.
-      </video>
+      <div id="backgroundContainer">
+        <video class="video-bg" autoplay muted loop id="bgVideo">
+          <!-- Add additional <source> elements for other video formats if necessary -->
+          Your browser does not support the video tag.
+        </video>
+      </div>
     
       <script>
-        // Array of video sources
         var videoSources = ['1.mp4', '2.mp4', '3.mp4', '4.mp4', '5.mp4'];
     
-        // Function to select a random video
         function selectRandomVideo(previousIndex) {
           var newIndex;
           do {
@@ -43,7 +43,6 @@
           return newIndex;
         }
     
-        // Function to update the video source
         function updateVideoSource() {
           var previousIndex = localStorage.getItem('previousVideoIndex');
           var newIndex = selectRandomVideo(previousIndex);
@@ -52,8 +51,33 @@
           localStorage.setItem('previousVideoIndex', newIndex);
         }
     
-        // Initial video update
-        updateVideoSource();
+        function loadStaticImage() {
+          var img = document.createElement('img');
+          img.className = 'video-bg'; // Use the same class as the video element
+          img.src = 'thumbnail/06.jpg'; // Change this line to the new image URL
+          img.onload = function() {
+            console.log("Image loaded successfully.");
+          };
+          img.onerror = function() {
+            console.log("Error loading image.");
+          };
+          document.getElementById('backgroundContainer').appendChild(img);
+          var video = document.getElementById('bgVideo');
+          video.style.display = 'none'; // Hide the video element
+        }
+    
+        function isIOS() {
+          //return false; // Temporarily return true for testing on PC
+          return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        }
+    
+        if (isIOS()) {
+          console.log("Detected iOS device.");
+          loadStaticImage();
+        } else {
+          console.log("Non-iOS device detected.");
+          updateVideoSource();
+        }
       </script>
       
       <div class='centered scrollFade'>
